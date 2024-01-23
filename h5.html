@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <title>AI Genie</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        #app {
+            /* padding: 0 20px; */
+        }
+        .main {
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("https://zaixi-resources.oss-cn-shenzhen.aliyuncs.com/aiGenieWeb/phone.png") no-repeat center;
+			background-size: cover;
+        }
+        .az-btn {
+            width: 250px;
+            height: 80px;
+            background: linear-gradient(136deg, #29E8FF 0%, #A647F5 100%);
+            border-radius: 20px 20px 20px 20px;
+            opacity: 1;
+            position: absolute;
+            left: 50%;
+            margin-left: -125px;
+            bottom:  200px;
+            text-align: center;
+            line-height: 80px;
+            font-size: 20px;
+            font-family: PingFang SC-Bold, PingFang SC;
+            font-weight: bold;
+            color: #FFFFFF;
+        }
+        .az-btn img {
+            width: 34px;
+            height: 34px;
+            margin-bottom: -8px;
+            margin-right: 4px;
+        }
+        .app-btn {
+            bottom:  90px;
+        }
+        .app-tips {
+            position: absolute;
+            bottom:  110px;
+            font-size: 12px;
+            font-family: PingFang SC-Bold, PingFang SC;
+            color: rgba(255,255,255,0.6);
+            width: 100%;
+            text-align: center;
+        }
+        .app-tips img {
+            width: 16px;
+            height: 16px;
+            margin-right: 9px;
+            margin-bottom: -2px;
+        }
+        .bottom-tips {
+            font-size: 10px;
+            font-family: PingFang SC-Bold, PingFang SC;
+            color: rgba(255,255,255,0.6);
+            position: absolute;
+            bottom:  35px;
+            width: 100%;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="main">
+            <div class="az-btn app-btn" @click="download">
+                <div v-if="isiOS">
+                    <img src="https://zaixi-resources.oss-cn-shenzhen.aliyuncs.com/aiGenieWeb/icon3.png" alt="">Ios版下载
+                </div>
+                <div v-if="isAndroid">
+                    <img src="https://zaixi-resources.oss-cn-shenzhen.aliyuncs.com/aiGenieWeb/icon1.png" alt="">Android版下载
+                </div>
+            </div>
+            <div class="bottom-tips">AI GENIE 1.0 Download ©2023</div>
+        </div>
+    </div>
+
+</body>
+
+</html>
+<script src="https://h5.kawakw.com/caishenka/comjs/vue.min.js"></script>
+<script src="https://xingda-images.oss-cn-shenzhen.aliyuncs.com/js/axios.js"></script>
+<script src="./js/api.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            link: null,
+            isiOS: null,
+            isAndroid: null
+        },
+        created() {
+            var userAgent = navigator.userAgent;
+            this.isiOS = !!userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+            this.isAndroid = userAgent.indexOf('Android') > -1 || userAgent.indexOf('Adr') > -1;
+        },
+        mounted() {
+            addUserBehavior(124)
+        },
+        methods: {
+            download(type) {
+                if (this.isiOS) {
+                    addUserBehavior(125)
+                    window.location.href = 'https://apps.apple.com/cn/app/id6473144543'
+                }
+                if (this.isAndroid) {
+                    addUserBehavior(126)
+                    axios.get(`https://zaixi-resources.oss-cn-shenzhen.aliyuncs.com/aiGenieWeb/downloadLink.json`, {}).then(res => {
+                        window.location.href = res.data.link
+                    })
+                }
+            }
+        }
+    })
+</script>
