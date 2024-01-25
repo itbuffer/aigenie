@@ -77,9 +77,9 @@
 <body>
     <div id="app" >
         <div class="main">
-            <div class="app-btn" @click="download('ios')">
+            <!-- <div class="app-btn" @click="download('ios')">
                 <img src="https://zaixi-resources.oss-cn-shenzhen.aliyuncs.com/aiGenieWeb/icon2.png" alt="">Ios版下载
-            </div>
+            </div> -->
             <div class="az-btn" @click="download">
                 <img src="https://zaixi-resources.oss-cn-shenzhen.aliyuncs.com/aiGenieWeb/android.png" alt="">Android版下载
             </div>
@@ -111,9 +111,10 @@
                     window.location.href = 'https://apps.apple.com/cn/app/id6473144543'
                 }else{
                     addUserBehavior(126)
-                    axios.get(`https://zaixi-resources.oss-cn-shenzhen.aliyuncs.com/aiGenieWeb/downloadLink.json`, {}).then(res => {
-                        window.location.href = res.data.link
-                    })
+                    window.location.href = "https://kawa-ai.oss-cn-shenzhen.aliyuncs.com/AI-package/geniehw.apk"
+                    // axios.get(`https://zaixi-resources.oss-cn-shenzhen.aliyuncs.com/aiGenieWeb/downloadLink.json`, {}).then(res => {
+                    //     window.location.href = res.data.link
+                    // })
                 }
             }
         }
