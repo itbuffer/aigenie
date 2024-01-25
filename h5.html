@@ -81,10 +81,10 @@
     <div id="app">
         <div class="main">
             <div class="az-btn app-btn" @click="download">
-                <div v-if="isiOS">
+                <!-- <div v-if="isiOS">
                     <img src="https://zaixi-resources.oss-cn-shenzhen.aliyuncs.com/aiGenieWeb/icon3.png" alt="">Ios版下载
-                </div>
-                <div v-if="isAndroid">
+                </div> -->
+                <div>
                     <img src="https://zaixi-resources.oss-cn-shenzhen.aliyuncs.com/aiGenieWeb/icon1.png" alt="">Android版下载
                 </div>
             </div>
@@ -116,15 +116,17 @@
         },
         methods: {
             download(type) {
-                if (this.isiOS) {
-                    addUserBehavior(125)
-                    window.location.href = 'https://apps.apple.com/cn/app/id6473144543'
-                }
+                // if (this.isiOS) {
+                //     addUserBehavior(125)
+                //     window.location.href = 'https://apps.apple.com/cn/app/id6473144543'
+                // }
                 if (this.isAndroid) {
+                    
                     addUserBehavior(126)
-                    axios.get(`https://zaixi-resources.oss-cn-shenzhen.aliyuncs.com/aiGenieWeb/downloadLink.json`, {}).then(res => {
-                        window.location.href = res.data.link
-                    })
+                    window.location.href = "https://kawa-ai.oss-cn-shenzhen.aliyuncs.com/AI-package/geniehw.apk"
+                    // axios.get(`https://zaixi-resources.oss-cn-shenzhen.aliyuncs.com/aiGenieWeb/downloadLink.json`, {}).then(res => {
+                    //     window.location.href = res.data.link
+                    // })
                 }
             }
         }
